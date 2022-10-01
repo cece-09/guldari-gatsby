@@ -1,0 +1,32 @@
+.navbar {
+    display: flex;
+    width: calc(100vw - 60px);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px #00000020;
+}
+.navbar::after {
+    display: block;
+    width: inherit;
+    height: inherit;
+}
+.logo {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: rgb(11, 129, 5);
+}
+.menu {
+    display: flex;
+    justify-content: space-between;
+}
+.menu li {
+    margin-left: 20px;
+}
+.menu li:hover {
+    border-bottom: 2px solid rgb(11, 129, 5);
+}
