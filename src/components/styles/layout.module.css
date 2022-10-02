@@ -1,6 +1,8 @@
 /* css for layout.js */
 .container {
     display: block;
-    margin: 0px auto;
-    
+    margin: 0px auto;   
+}
+.container main {
+    padding-top: 60px;
 }

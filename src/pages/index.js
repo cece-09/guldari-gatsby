@@ -2,7 +2,8 @@ import * as React from "react";
 import "../static/styles/styles.css";
 import Layout from "../components/layout";
 import Navbar from "../components/navbar";
-import { Section, Flex, Text } from "../components/basic";
+import { Card } from "../components/card";
+import { Section } from "../components/components";
 import { graphql } from "gatsby";
 
 const menuitems = [
@@ -11,12 +12,15 @@ const menuitems = [
 ];
 
 const IndexPage = ({ data }) => {
-  console.log(data);
-
+  const stores = data.allContentfulStore.nodes;
+  console.log(stores[0].name);
   return (
     <Layout navbar={<Navbar logo="리마켓프로젝트" itemList={menuitems} />}>
       <Section>
-        <Text title="this is title" body="this is body" />
+        {stores.map((s, i) => {
+          <Card i={i} title={s.name} description={s.description}></Card>;
+        })}
+        <Card></Card>
       </Section>
     </Layout>
   );
