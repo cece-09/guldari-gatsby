@@ -3,17 +3,16 @@ import "../static/styles/styles.css";
 import Layout from "../components/layout";
 import Navbar from "../components/navbar";
 import { Section, Flex, Text } from "../components/basic";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
-import { useStore } from "../hooks/use-store";
+import { graphql } from "gatsby";
 
 const menuitems = [
   { item: "굴다리시장", src: "/" },
   { item: "공지사항", src: "/404" },
 ];
 
-const IndexPage = () => {
-  // const { title, description, siteUrl } = useSiteMetadata();
-  // console.log(useStore);
+const IndexPage = ({ data }) => {
+  console.log(data);
+
   return (
     <Layout navbar={<Navbar logo="리마켓프로젝트" itemList={menuitems} />}>
       <Section>
@@ -23,5 +22,22 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
 export const Head = () => <title>리마켓</title>;
+export const query = graphql`
+  query MyQuery {
+    allContentfulStore(sort: { fields: number }) {
+      nodes {
+        name
+        number
+        phone
+        description {
+          raw
+        }
+        contentful_id
+      }
+      totalCount
+    }
+  }
+`;
+
+export default IndexPage;
