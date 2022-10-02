@@ -1,6 +1,19 @@
+import "./env";
+
 module.exports = {
   siteMetadata: {
+    title: `리마켓 프로젝트`,
+    description: `this is site description`,
     siteUrl: `https://www.yourdomain.tld`,
   },
-  plugins: [],
-}
+  plugins: [
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: "pozmidnqw1nj",
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    "gatsby-plugin-image",
+  ],
+};
