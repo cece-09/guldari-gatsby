@@ -1,4 +1,4 @@
-import storeTemplate from './src/templates/store-template.js'
+const storeTemplate = require('./src/templates/store-template.js');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
