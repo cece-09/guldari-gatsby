@@ -1,6 +1,7 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
+// import './env.js';
 
 module.exports = {
   siteMetadata: {
@@ -17,5 +18,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
   ],
 };

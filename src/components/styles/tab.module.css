@@ -1,0 +1,67 @@
+.storeContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.storeCategory {
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.storeCategory button {
+    font-size: 0.7rem;
+    width: 80px;
+    height: 30px;
+    border-radius: 20px;
+    border: 1px solid #222;
+    background-color: transparent;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+.storeCategory .selectedBtn {
+    background-color: #222!important;
+    color: #fff!important;
+}
+.storeCategory button:last-of-type {
+    margin-right: 0px;
+}
+.storeList {
+    display: flex;
+    width: 100%;
+    padding: 20px 10px;
+}
+.storeThumbnail {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px #00000020;
+    overflow: hidden;
+}
+.storeThumbnail .storeThumbnailText {
+    padding: 10px;
+}
+.storeThumbnail .storeThumbnailText h1 {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.storeThumbnail .storeThumbnailText h2 {
+    font-size: 0.9rem;
+}
+.storeThumbnail .storeThumbnailText h3 {
+    font-size: 0.9rem;
+}
+.storeThumbnailImages * {
+    width: 100%;
+}
+.storeThumbnailImages img {
+    object-fit: cover;
+}
+/*storeContainer,
+  storeCategory,
+  storeList,
+  storeThumbnail,*/

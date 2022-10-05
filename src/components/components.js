@@ -1,7 +1,8 @@
 import * as React from "react";
+import { section, text, image } from './styles/components.module.css';
 
 const Section = ({ children }) => {
-  return <section>{children}</section>;
+  return <section className={section}>{children}</section>;
 };
 
 const Text = ({ title, body }) => {
