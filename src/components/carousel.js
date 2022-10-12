@@ -7,16 +7,12 @@ import {
   image,
   button,
 } from "./styles/carousel.module.css";
-import slide1 from "../images/slides/slide1.jpg";
-import slide2 from "../images/slides/slide2.jpg";
-import slide3 from "../images/slides/slide3.jpg";
 import { AiOutlineRight } from "@react-icons/all-files/ai/AiOutlineRight";
 import { AiOutlineLeft } from "@react-icons/all-files/ai/AiOutlineLeft";
 
-const slides = [slide1, slide2, slide3];
 
-export const Carousel = () => {
-  const totalSlideNum = slides.length; // total slide num
+export const Carousel = ({images}) => {
+  const totalSlideNum = images.length; // total slide num
 
   const [currSlide, setCurrSlide] = useState(0); // initailize first slide
   const carouselRef = useRef(null);
@@ -46,6 +42,8 @@ export const Carousel = () => {
   const Image = ({ src }) => {
     const bg = {
       backgroundImage: `url(${src})`,
+      // backgroundSize: `cover`,
+      // backgroundPosition: `center`,
     };
 
     return <div className={image} style={bg}><div></div></div>;
@@ -58,8 +56,8 @@ export const Carousel = () => {
       </button>
       <div className={viewport}>
         <div className={container} ref={carouselRef}>
-          {slides.map((img, i) => {
-            return <Image key={i} src={img} />;
+          {images.map((img, i) => {
+            return <Image key={i} src={img.node.url} />;
           })}
         </div>
       </div>

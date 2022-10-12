@@ -15,11 +15,13 @@ const menuitems = [
 const IndexPage = ({ data }) => {
   const storeData = data.allContentfulStore.edges;
   const categoryData = data.allContentfulCategory.edges;
+  const assetData = data.allContentfulAsset.edges;
+  console.log(assetData);
 
   return (
     <Layout navbar={<Navbar logo="리마켓프로젝트" itemList={menuitems} />}>
       <Section>
-        <Carousel />
+        <Carousel images={assetData}/>
       </Section>
       <Section>
         <Tab stores={storeData} categories={categoryData} />
@@ -66,6 +68,15 @@ export const query = graphql`
           key
           code
           name
+        }
+      }
+    }
+    allContentfulAsset {
+      edges {
+        node {
+          id
+          title
+          url
         }
       }
     }
