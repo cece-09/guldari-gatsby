@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "gatsby";
 import {
   storeContainer,
   storeCategory,
@@ -8,21 +9,21 @@ import {
   storeThumbnailText,
   selectedBtn,
 } from "./styles/tab.module.css";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
+// import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 // 카테고리 버튼 목록
 const StoreCategory = ({ list, onClick, selected }) => {
   return (
     <div className={storeCategory}>
-      {list.map(({ contentful_id, name }, i) => {
+      {list.map(({ node }, i) => {
         return (
           <button
             key={i}
-            name={contentful_id}
+            name={node.contentful_id}
             onClick={onClick}
-            className={contentful_id === selected ? selectedBtn : ""}
+            className={node.contentful_id === selected ? selectedBtn : ""}
           >
-            {name}
+            {node.name}
           </button>
         );
       })}
@@ -48,27 +49,37 @@ const StoreThumbnailImages = ({ elem }) => {
 const StoreThumbnail = ({ elem }) => {
   const imageSrc = elem.image !== null ? elem.image.map((el) => el.url) : null;
   return (
-    <div className={storeThumbnail} key={elem.contentful_id}>
-      <StoreThumbnailImages elem={imageSrc} />
-      <div className={storeThumbnailText}>
-        <h1>{elem.name}</h1>
-        <h2>굴다리시장 {elem.number}호</h2>
-        <h3>{elem.phone}</h3>
-      </div>
-      {/*renderRichText(elem.description)*/}
-    </div>
+    <>
+      <Link
+        to={`/store/${elem.contentful_id}`}
+        className={storeThumbnail}
+        key={elem.contentful_id}
+      >
+        <StoreThumbnailImages elem={imageSrc} />
+        <div className={storeThumbnailText}>
+          <h1>{elem.name}</h1>
+          <h2>굴다리시장 {elem.number}호</h2>
+          <h3>{elem.phone}</h3>
+        </div>
+        {/*renderRichText(elem.description)*/}
+      </Link>
+    </>
   );
 };
 
 // 전체 리스트 섹션
 const StoreList = ({ list, selected }) => {
+  console.log(list);
   const filetered = list.filter(
-    (elem) => elem.category.contentful_id === selected
+    (elem) => elem.node.category.contentful_id === selected
   );
+  console.log(filetered);
+  
   return (
     <section className={storeList}>
       {filetered.map((store, i) => {
-        return <StoreThumbnail key={i} elem={store} />;
+        
+        return <StoreThumbnail key={i} elem={store.node} />;
       })}
     </section>
   );
@@ -76,7 +87,7 @@ const StoreList = ({ list, selected }) => {
 
 // 전체 탭 to export
 const Tab = ({ stores, categories }) => {
-  const tabInit = categories[0].contentful_id;
+  const tabInit = categories[0].node.contentful_id;
   const [tab, setTab] = React.useState(tabInit);
   const onTabClick = (e) => {
     setTab(e.target.name);

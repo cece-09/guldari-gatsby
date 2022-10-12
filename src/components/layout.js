@@ -1,11 +1,11 @@
 import * as React from "react";
-import { container, mainContainer } from "./styles/layout.module.css";
+import { container } from "./styles/layout.module.css";
 
 const Layout = ({ navbar, children, footer }) => {
   return (
     <div className={container}>
       <header>{navbar}</header>
-      <main className={mainContainer}>{children}</main>
+      <main>{children}</main>
       {/* <footer>{footer}</footer> */}
     </div>
   );

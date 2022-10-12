@@ -1,35 +1,59 @@
-const storeTemplate = require('./src/templates/store-template.js');
+const path = require("path");
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
-  const { template } = storeTemplate;
-  return graphql(
-    `
-      query loadPages {
-        allContentfulStore {
-          edges {
-            node {
+  const result = await graphql(`
+    query MyQuery {
+      allContentfulStore {
+        edges {
+          node {
+            id
+            contentful_id
+            name
+            phone
+            number
+            description {
+              raw
+            }
+            category {
+              contentful_id
+              key
+              code
               name
+            }
+            image {
+              url
+              title
             }
           }
         }
       }
-    `,
-    { limit: 1000 }
-  ).then((result) => {
-    if (result.errors) {
-      throw result.errors;
+      allContentfulCategory(sort: { fields: key }) {
+        edges {
+          node {
+            contentful_id
+            key
+            code
+            name
+          }
+        }
+      }
     }
+  `);
+  if (result.errors) {
+    reporter.panicOnBuild(`Error`);
+    return;
+  }
 
-    // Create post pages
-    result.data.allContentfulStore.edges.forEach((edge) => {
-      createPage({
-        path: `${edge.node.name}`,
-        component: template,
-        context: {
-          name: `idontknow`
-        },
-      });
+  const storeTemplate = path.resolve(`src/templates/store-template.js`);
+  console.log(result);
+  result.data.allContentfulStore.edges.forEach(({ node }) => {
+    createPage({
+      path: `/store/${node.contentful_id}`,
+      component: storeTemplate,
+      context: {
+        store: node,
+      },
     });
   });
 };

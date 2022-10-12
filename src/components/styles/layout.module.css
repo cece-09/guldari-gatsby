@@ -4,5 +4,6 @@
     margin: 0px auto;   
 }
 .container main {
-    padding-top: 60px;
+    /* padding-top: 60px; */
+    /* box-sizing: border-box; */
 }

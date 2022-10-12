@@ -1,8 +1,10 @@
 .storeContainer {
     width: 100%;
+    height: 80%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    box-sizing: border-box;
 }
 .storeCategory {
     display: flex;
@@ -32,34 +34,53 @@
     display: flex;
     width: 100%;
     padding: 20px 10px;
+    box-sizing: border-box;
 }
 .storeThumbnail {
+    font-size: 0.9rem;
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 33.3%;
+    max-width: 200px;
+    height: 150px;
     border-radius: 20px;
     background-color: #fff;
-    box-shadow: 1px 1px 10px #00000020;
+    box-shadow: 0px 1px 5px #00000020;
     overflow: hidden;
+    margin-right: 10px;
 }
 .storeThumbnail .storeThumbnailText {
-    padding: 10px;
+    padding: 1em;
 }
 .storeThumbnail .storeThumbnailText h1 {
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 0.5em;
 }
 .storeThumbnail .storeThumbnailText h2 {
-    font-size: 0.9rem;
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
 }
 .storeThumbnail .storeThumbnailText h3 {
-    font-size: 0.9rem;
+    font-size: 0.8em;
 }
-.storeThumbnailImages * {
+.storeThumbnailImages {
     width: 100%;
+    height: 80%;
+    overflow: hidden;
+}
+.storeThumbnailImages ul {
+    display: flex;
+    width: inherit;
+    height: 100%;
+}
+.storeThumbnailImages li {
+    width: inherit;
+    height: inherit;
 }
 .storeThumbnailImages img {
+    width: inherit;
     object-fit: cover;
+    object-position: center;
 }
 /*storeContainer,
   storeCategory,
