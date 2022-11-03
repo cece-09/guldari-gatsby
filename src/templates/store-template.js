@@ -1,11 +1,8 @@
-import * as React from "react";
-import "../static/styles/styles.css";
-import Layout from "../components/layout";
-import Navbar from "../components/navbar";
-import Tab from "../components/tab";
-import { Carousel } from "../components/carousel";
-import { Section } from "../components/components";
-import { graphql } from "gatsby";
+import * as React from "react"
+import "../static/styles/styles.css"
+import Layout  from "../components/layout"
+import Navbar  from "../components/navbar"
+import Section from "../components/section"
 
 const menuitems = [
   { item: "굴다리시장", src: "/" },
@@ -13,10 +10,15 @@ const menuitems = [
 ];
 export default function storeTemplate({ pageContext }) {
   const { name, phone, number } = pageContext.store;
+  console.log(pageContext);
   return (
     <Layout navbar={<Navbar logo="리마켓프로젝트" itemList={menuitems} />}>
       <Section>
-        <div>{name}</div>
+        <div className="post-header">
+          <div>{`제 ${number}호`}</div>
+          <div>{name}</div>
+          <div>{phone}</div>
+        </div>
       </Section>
     </Layout>
   );

@@ -1,41 +1,41 @@
-import { useState, useEffect, useRef } from "react";
-import React from "react";
+import { useState, useEffect, useRef } from "react"
+import React from "react"
 import {
   carousel,
   viewport,
   container,
   image,
   button,
-} from "./styles/carousel.module.css";
-import { AiOutlineRight } from "@react-icons/all-files/ai/AiOutlineRight";
-import { AiOutlineLeft } from "@react-icons/all-files/ai/AiOutlineLeft";
+} from "./styles/carousel.module.css"
+import { AiOutlineRight } from "@react-icons/all-files/ai/AiOutlineRight"
+import { AiOutlineLeft } from "@react-icons/all-files/ai/AiOutlineLeft"
 
 
-export const Carousel = ({images}) => {
+const Carousel = ({images}) => {
   const totalSlideNum = images.length; // total slide num
 
-  const [currSlide, setCurrSlide] = useState(0); // initailize first slide
-  const carouselRef = useRef(null);
+  const [currSlide, setCurrSlide] = useState(0) // initailize first slide
+  const carouselRef = useRef(null)
 
   useEffect(() => {
-    carouselRef.current.style.transform = `translateX(${currSlide * -100}%)`;
+    carouselRef.current.style.transform = `translateX(${currSlide * -100}%)`
   });
 
   // button onclick functions
   const nextSlide = () => {
     // is the last slide, go to first
     if (currSlide === totalSlideNum - 1) {
-      setCurrSlide(0);
+      setCurrSlide(0)
     } else {
-      setCurrSlide(currSlide + 1);
+      setCurrSlide(currSlide + 1)
     }
   };
   const prevSlide = () => {
     // is the first slide, go to last
     if (currSlide === 0) {
-      setCurrSlide(totalSlideNum - 1);
+      setCurrSlide(totalSlideNum - 1)
     } else {
-      setCurrSlide(currSlide - 1);
+      setCurrSlide(currSlide - 1)
     }
   };
 
@@ -46,7 +46,7 @@ export const Carousel = ({images}) => {
       // backgroundPosition: `center`,
     };
 
-    return <div className={image} style={bg}><div></div></div>;
+    return <div className={image} style={bg}><div></div></div>
   };
   
   return (
@@ -57,7 +57,7 @@ export const Carousel = ({images}) => {
       <div className={viewport}>
         <div className={container} ref={carouselRef}>
           {images.map((img, i) => {
-            return <Image key={i} src={img.node.url} />;
+            return <Image key={i} src={img.node.url} />
           })}
         </div>
       </div>
@@ -67,3 +67,5 @@ export const Carousel = ({images}) => {
     </div>
   );
 };
+
+export default Carousel
